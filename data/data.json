@@ -2,12 +2,14 @@
   {
     "id": 1,
     "name": "iPhone",
-    "price": 80000
+    "price": 80000,
+    "description": "Apple flagship phone"
   },
 
   {
     "id": 2,
     "name": "Samsung",
-    "price": 50000
+    "price": 50000,
+    "description": "Android smartphone"
   }
 ]
