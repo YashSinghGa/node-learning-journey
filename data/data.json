@@ -1,13 +1,13 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "iPhone",
     "price": 80000,
     "description": "Apple flagship phone"
   },
 
   {
-    "id": 2,
+    "id": 1,
     "name": "Samsung",
     "price": 50000,
     "description": "Android smartphone"
