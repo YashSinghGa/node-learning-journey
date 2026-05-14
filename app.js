@@ -1,6 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
+const slugify = require("slugify");
 
 const replaceTemplate = require("./modules/replaceTemplate");
 
@@ -8,6 +9,9 @@ const replaceTemplate = require("./modules/replaceTemplate");
 const data = fs.readFileSync("./data/data.json", "utf-8");
 const dataObj = JSON.parse(data);
 
+const slugs = dataObj.map((el) => slugify(el.name, { lower: true }));
+
+console.log(slugs);
 // Read HTML templates
 const tempOverview = fs.readFileSync("./templates/overview.html", "utf-8");
 
