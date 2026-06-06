@@ -6,20 +6,38 @@ const dataObj = JSON.parse(data);
 
 const app = express();
 
-// Home Route
+// Middleware
+app.use((req, res, next) => {
+  console.log("Hello from middleware");
+  next();
+});
+
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  console.log(req.requestTime);
+  console.log("Middleware 1");
+  next();
+});
+
+app.use((req, res, next) => {
+  console.log("Middleware 2");
+  next();
+});
+
+// Routes
 app.get("/", (req, res) => {
   res.send("Hello from Express");
 });
 
-// API Route
 app.get("/api", (req, res) => {
-  res.json(dataObj);
+  res.json({
+    requestedAt: req.requestTime,
+    data: dataObj,
+  });
 });
 
-// Dynamic Product Route
 app.get("/product/:id", (req, res) => {
   const id = Number(req.params.id);
-
   const product = dataObj[id];
 
   if (!product) {
