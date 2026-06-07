@@ -6,6 +6,8 @@ const dataObj = JSON.parse(data);
 
 const app = express();
 
+app.use(express.json());
+
 // Middleware
 app.use((req, res, next) => {
   console.log("Hello from middleware");
@@ -48,6 +50,14 @@ app.get("/product/:id", (req, res) => {
   }
 
   res.json(product);
+});
+app.post("/api/products", (req, res) => {
+  console.log(req.body);
+
+  res.status(201).json({
+    status: "success",
+    data: req.body,
+  });
 });
 
 app.listen(8000, () => {
