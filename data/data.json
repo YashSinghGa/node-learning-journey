@@ -1,15 +1,1 @@
-[
-  {
-    "id": 0,
-    "name": "iPhone",
-    "price": 80000,
-    "description": "Apple flagship phone"
-  },
-
-  {
-    "id": 1,
-    "name": "Samsung",
-    "price": 50000,
-    "description": "Android smartphone"
-  }
-]
+[{"id":0,"name":"iPhone","price":80000,"description":"Apple flagship phone"},{"id":1,"name":"Samsung","price":50000,"description":"Android smartphone"},{"title":"Updated Note"},{"id":2,"name":"OnePlus","price":35000,"description":"Android phone"}]

@@ -54,9 +54,15 @@ app.get("/product/:id", (req, res) => {
 app.post("/api/products", (req, res) => {
   console.log(req.body);
 
-  res.status(201).json({
-    status: "success",
-    data: req.body,
+  const newProduct = req.body;
+
+  dataObj.push(newProduct);
+
+  fs.writeFile("./data/data.json", JSON.stringify(dataObj), (err) => {
+    res.status(201).json({
+      status: "success",
+      data: newProduct,
+    });
   });
 });
 
