@@ -66,6 +66,19 @@ app.post("/api/products", (req, res) => {
   });
 });
 
+app.patch("/api/products/:id", (req, res) => {
+  res.status(200).json({
+    status: "succes",
+    data: "<Update product here...>",
+  });
+});
+
+app.delete("/api/products/:id", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    data: null,
+  });
+});
 app.listen(8000, () => {
   console.log("Express server running...");
 });
