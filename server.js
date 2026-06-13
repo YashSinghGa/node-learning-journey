@@ -26,6 +26,58 @@ app.use((req, res, next) => {
   next();
 });
 
+const getAllProducts = (req, res) => {
+  res.json({
+    requestedAt: req.requestTime,
+    data: dataObj,
+  });
+};
+
+const getProduct = (req, res) => {
+  res.json({
+    status: "success",
+  });
+};
+
+const createProduct = (req, res) => {
+  res.json({
+    status: "success",
+  });
+};
+
+const updateProduct = (req, res) => {
+  res.json({
+    status: "success",
+  });
+};
+
+const deleteProduct = (req, res) => {
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+};
+
+// Routes
+app.get("/", (req, res) => {
+  res.send("Hello from Express");
+});
+
+app.get("/api", getAllProducts);
+
+app.get("/product/:id", getProduct);
+
+app.post("/api/products", createProduct);
+
+app.patch("/api/products/:id", updateProduct);
+
+app.delete("/api/products/:id", deleteProduct);
+
+app.listen(8000, () => {
+  console.log("Express server running...");
+});
+
+/*
 // Routes
 app.get("/", (req, res) => {
   res.send("Hello from Express");
@@ -79,6 +131,4 @@ app.delete("/api/products/:id", (req, res) => {
     data: null,
   });
 });
-app.listen(8000, () => {
-  console.log("Express server running...");
-});
+*/
