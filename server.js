@@ -1,10 +1,8 @@
 const express = require("express");
-const fs = require("fs");
-
-const data = fs.readFileSync("./data/data.json", "utf-8");
-const dataObj = JSON.parse(data);
 
 const app = express();
+
+const productRouter = require("./routes/productRoutes");
 
 app.use(express.json());
 
@@ -26,109 +24,14 @@ app.use((req, res, next) => {
   next();
 });
 
-const getAllProducts = (req, res) => {
-  res.json({
-    requestedAt: req.requestTime,
-    data: dataObj,
-  });
-};
-
-const getProduct = (req, res) => {
-  res.json({
-    status: "success",
-  });
-};
-
-const createProduct = (req, res) => {
-  res.json({
-    status: "success",
-  });
-};
-
-const updateProduct = (req, res) => {
-  res.json({
-    status: "success",
-  });
-};
-
-const deleteProduct = (req, res) => {
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
-};
-
-// Routes
+// Home Route
 app.get("/", (req, res) => {
   res.send("Hello from Express");
 });
 
-app.get("/api", getAllProducts);
-
-app.get("/product/:id", getProduct);
-
-app.post("/api/products", createProduct);
-
-app.patch("/api/products/:id", updateProduct);
-
-app.delete("/api/products/:id", deleteProduct);
+// Product Router
+app.use("/api/products", productRouter);
 
 app.listen(8000, () => {
   console.log("Express server running...");
 });
-
-/*
-// Routes
-app.get("/", (req, res) => {
-  res.send("Hello from Express");
-});
-
-app.get("/api", (req, res) => {
-  res.json({
-    requestedAt: req.requestTime,
-    data: dataObj,
-  });
-});
-
-app.get("/product/:id", (req, res) => {
-  const id = Number(req.params.id);
-  const product = dataObj[id];
-
-  if (!product) {
-    return res.status(404).json({
-      status: "fail",
-      message: "Product not found",
-    });
-  }
-
-  res.json(product);
-});
-app.post("/api/products", (req, res) => {
-  console.log(req.body);
-
-  const newProduct = req.body;
-
-  dataObj.push(newProduct);
-
-  fs.writeFile("./data/data.json", JSON.stringify(dataObj), (err) => {
-    res.status(201).json({
-      status: "success",
-      data: newProduct,
-    });
-  });
-});
-
-app.patch("/api/products/:id", (req, res) => {
-  res.status(200).json({
-    status: "succes",
-    data: "<Update product here...>",
-  });
-});
-
-app.delete("/api/products/:id", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    data: null,
-  });
-});
-*/
